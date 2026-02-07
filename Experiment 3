@@ -1,0 +1,42 @@
+insert into EMPLOYEE2 values(10,'alan',17000,'Sales');
+insert into EMPLOYEE2 values(2,'philip',20000,'HR');
+insert into EMPLOYEE2 values(3,'Shaji',4000,'Production');
+insert into EMPLOYEE2 values(5,'Lesly',40000,'Production');
+insert into EMPLOYEE2 values(11,'Alex Smith',45000,'HR');
+insert into EMPLOYEE2 values(7,'Ouseph',5000,'Production');
+insert into EMPLOYEE2 values(12,'Christys',4000,'Marketing');
+SELECT * FROM EMPLOYEE2 WHERE emp_id=3;
+update  EMPLOYEE2  set salary=6700.00 where emp_name='David Smith';
+insert into EMPLOYEE2 values(9,'Daniel harris',6700.00,'Production');
+delete from employee2 where emp_id=3;
+
+select * from employee2 where emp_name not like 'D%' and emp_name not like '0%';
+
+
+select sum(salary) as Total_salry_Expense, dept2 from employee2 group by dept2;
+
+
+update employee2 set salary=salary+(salary*(5/100)) where dept2='Production';
+
+select * from employee2 where dept2='Production';
+ delete from employee2 where salary<7000;
+ 
+SELECT emp_name, salary
+FROM employee2
+WHERE salary = (
+    SELECT MIN(salary)
+    FROM employee2
+);
+
+ 
+update employee2 set salary=8200 where dept2='Marketing';
+select * from employee2;
+
+select * from employee2 where emp_name like'a%';
+
+select * from employee2 where emp_name like'%it%';
+
+select distinct(upper(dept2)) from employee2;
+
+select * from employee2 where dept2 like'M_r%ket%';
+select distinct(reverse(upper(dept2))) from employee2;
