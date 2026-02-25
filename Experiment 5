@@ -1,0 +1,60 @@
+create table Customer(CustomerID int primary key, CustomerName varchar(30), ContactNo int , Address varchar(30), City varchar(30), PostalCode varchar(30), Country varchar(30));
+insert into Customer values(1,'Alex',8086153527,'Poriyath house','Pala','686543','India');
+insert into Customer values(2,'Philip',8086153529,'Kochupoovath house','Kanjirapally','686542','India');
+insert into Customer values(3,'Mangalam',9086153527,'vakasseril house','Kottayam','656543','India');
+insert into Customer values(4,'Shaji',8089153527,'manak house','thengana','636543','India');
+insert into Customer values(5,'Alexy',8086153527,'Poriyathee house','Pala','686543','India');
+insert into Customer values(6,'Alexander ',6086153527,'Athimootil house','LA','686543','USA');
+insert into Customer values(7,'Alexanderia ',6086153527,'Athiootil house','LA','686543','USA');
+insert into Customer values(8,'Alen ',6086153527,' Boot house','LA','686543','USA');
+
+
+create table orders(OrderID int primary key , CustomerID int , EmployeeID int , OrderDate Date , ShipperID int ,foreign key(CustomerID) references Customer,foreign key(EmployeeID) references Employee5);
+create table Employee5(EmployeeID int primary key, FirstName varchar(30) ,LastName varchar(30), BirthDate Date ,Photo varchar(30));
+insert into Employee5 values(1,'Mikey','Gee','12/10/2006','jpeg');
+insert into Employee5 values(2,'Michael','Gees','12/10/2005','jpeg');
+insert into Employee5 values(3,'Muhammad','Geeth','12/10/2004','jpeg');
+insert into Employee5 values(4,'Philips','koch','1/7/2006','jpeg');
+insert into Employee5 values(5,'Raiwin','Geeth','1/10/2006','jpeg');
+insert into Employee5 values(6,'Raiwis','Geeth','1/10/1986','jpeg');
+insert into Employee5 values(7,'Alin','Gee','2/10/1980','jpeg');
+insert into Employee5 values(8,'Alex','G','3/10/1980','jpeg');
+
+
+
+
+insert into orders values(1,1,1,'1/10/2025',1);
+insert into orders values(2,1,1,'2/10/2025',2);
+insert into orders values(3,1,1,'3/10/2025',3);
+insert into orders values(4,2,2,'25/10/2025',4);
+insert into orders values(5,6,3,'1/10/2025',5);
+insert into orders values(6,7,4,'2/10/2025',6);
+insert into orders values(7,8,5,'3/10/2025',7);
+
+select * from customer order by CustomerName;
+ select * from orders order by OrderDate;
+ 
+ select *  from Employee5 where Birthdate > '30/12/1980' order by BirthDate;  
+
+select distinct(OrderDate),CustomerName  from Customer,orders  where Country='USA' order by OrderDate desc;
+select * from orders;
+select * from Orders
+WHERE CustomerID IN  (
+    SELECT CustomerID
+    FROM Customer
+    WHERE Country = 'USA'
+)
+ORDER BY OrderDate DESC;
+
+select count(orderid),CustomerName from orders,Customer group by CustomerName;
+SELECT c.CustomerName, COUNT(o.OrderID) AS TotalOrders
+FROM Customer c
+JOIN Orders o ON c.CustomerID = o.CustomerID
+GROUP BY c.CustomerID, c.CustomerName;
+
+
+
+
+
+
+
